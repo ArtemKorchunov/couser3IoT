@@ -20,7 +20,7 @@ def main():
         res_payload_dict = res.json()
         content_current = res_payload_dict['data']['identifier']
         f = open("creds.txt", "w+")
-        f.write(res_payload_dict['data'])
+        f.write(json.dumps(res_payload_dict['data']))
         f.close()
 
     if content_current:
