@@ -7,9 +7,11 @@ print(__name__)
 
 
 def main():
+    content_current = ''
     f = open("creds.txt", "r")
     fread = f.read()
-    content_current = json.loads(fread)
+    if fread:
+        content_current = json.loads(fread)
     f.close()
     res = requests.post('http://http://192.168.0.108:4000/iot/auth',
                         data={'name': 'raspberry', 'identifier': content_current['identifier']})
