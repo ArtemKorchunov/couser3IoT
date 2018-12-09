@@ -7,14 +7,14 @@ print(__name__)
 
 
 def main():
-    content_current = ''
+    content_current = {'identifier': ''}
     f = open("creds.txt", "r")
     fread = f.read()
-    if fread != '':
+    if fread:
         content_current = json.loads(fread)
     f.close()
     res = requests.post('http://http://192.168.0.108:4000/iot/auth',
-                        data={'name': 'raspberry', 'identifier': content_current != '' if content_current['identifier'] else ''})
+                        data={'name': 'raspberry', 'identifier': content_current['identifier']})
     print(res.text)
     if res.status_code == 201:
         res_payload_dict = res.json()
