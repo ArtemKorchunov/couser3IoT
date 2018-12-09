@@ -18,9 +18,9 @@ def main():
     print(res.text)
     if res.status_code == 201:
         res_payload_dict = res.json()
-        content_current = json.loads(res_payload_dict)
+        content_current = res_payload_dict['data']['identifier']
         f = open("creds.txt", "w+")
-        f.write(res_payload_dict)
+        f.write(res_payload_dict['data'])
         f.close()
 
     if content_current:
