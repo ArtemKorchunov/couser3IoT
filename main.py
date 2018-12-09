@@ -19,10 +19,8 @@ def main():
     if res.status_code == 201:
         res_payload_dict = res.json()
         content_current = res_payload_dict['data']['identifier']
-        f = open("creds.txt", "w+")
-        f.write(json.dumps(res_payload_dict['data']))
-        f.close()
-
+        with open('creds.txt', 'w+') as outfile:
+            json.dump(res_payload_dict['data'], outfile)
     if content_current:
         while True:
             humidity, temperature = Adafruit_DHT.read_retry(11, 4)
