@@ -11,7 +11,7 @@ def main():
     f = open("creds.txt", "r")
     content_current['identifier'] = f.read()
     f.close()
-    res = requests.post('https://course3.herokuapp.com/iot/auth',
+    res = requests.post('http://192.168.0.108:4000/iot/auth',
                         data={'name': 'raspberry', 'identifier': content_current['identifier']})
     print(res.text)
     if res.status_code == 201:
@@ -26,7 +26,7 @@ def main():
             humidity, temperature = Adafruit_DHT.read_retry(11, 4)
 
             print("Temp: {} C  Humidity: {}".format(temperature, humidity))
-            requests.get('https://course3.herokuapp.com/iot/logger',
+            requests.get('http://192.168.0.108:4000/iot/logger',
                          params={'heat': temperature, 'identifier': content_current['identifier'], 'id': content_current['id']})
 
 
