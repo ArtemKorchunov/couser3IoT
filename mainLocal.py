@@ -24,9 +24,9 @@ def main():
     if content_current:
         while True:
             humidity, temperature = Adafruit_DHT.read_retry(11, 4)
-            print("Temp: {} C  Humidity: {}".format(temperatureRand, humidity))
+            print("Temp: {} C  Humidity: {}".format(temperature, humidity))
             requests.get('http://192.168.43.228:4000/iot/logger',
-                         params={'heat': temperatureRand, 'identifier': content_current['identifier'], 'id': content_current['id']})
+                         params={'heat': temperature, 'identifier': content_current['identifier'], 'id': content_current['id']})
 
 
 if __name__ == "__main__":
